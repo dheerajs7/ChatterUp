@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import userRouter from './routes/user.routes.js';
 import cookieParser from 'cookie-parser';
 import { messageRouter } from './routes/message.routes.js';
-import { router } from './routes/friends.routes.js';
+import { friendRouter} from './routes/friends.routes.js';
 dotenv.config()
 
 
@@ -28,7 +28,7 @@ app.get("/",(req,res)=>{
 
 app.use('/api',userRouter)
 app.use('/api',messageRouter)
-app.use('/api',router)
+app.use('/api',friendRouter)
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`)

@@ -3,11 +3,11 @@ import { isAuthenticate } from '../middleware/verifyToken.js'
 import { getFriends } from '../controllers/friends.controller.js'
 
 
-const router = express.Router()
+const friendRouter = express.Router()
 
 
-router.route("/friends").get(isAuthenticate,getFriends)
+friendRouter.route("/").get(isAuthenticate,getFriends)
 
 
-export{router}
+export{friendRouter}
 

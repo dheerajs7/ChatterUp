@@ -14,7 +14,7 @@ const signUp =async(req,res,next)=>{
         if(!username && !email){
         return next(ApiError(400,"Please enter both username and email"))
 
-     }
+     } 
      if(password.length<8){
         return next(ApiError(400,"Password must be at least 8 characters"))
      }
@@ -39,7 +39,7 @@ const signUp =async(req,res,next)=>{
        
 }
 
-const login=async(req,res)=>{
+const login=async(req,res,next)=>{
     try{
     const{email,password}= req.body;
     const validUser =await User.findOne({email})
@@ -47,14 +47,14 @@ const login=async(req,res)=>{
     if(!validUser){
         return next(ApiError(404,"User not found"))
     }
-     const  validPassword= bcrypt.compare(password,validUser.password)
+     const  validPassword= await bcrypt.compare(password,validUser.password)
 
-     if(validPassword){
+     if(!validPassword){
         return next(ApiError(401,"Password not match"))
      }
 
      const token = jwt.sign({id:validUser._id},process.env.JWT_SECRET)
-     res.cookie("access_token",token,{httpOnly:true}).status(201).json({message:"User created successfully",validUser})
+     res.cookie("access_token",token,{httpOnly:true}).status(201).json({message:"User Logged in Successfully",validUser})
 }catch(err){
 next(err)
 }

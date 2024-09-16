@@ -1,7 +1,7 @@
 import { ApiError } from "../utils/ApiError.js"
 import jwt from "jsonwebtoken"
 
-const isAuthenticate = async(req,res)=>{
+const isAuthenticate = async(req,res,next)=>{
     try {
         const token = req.cookies.access_token
 
