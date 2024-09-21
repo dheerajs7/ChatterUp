@@ -22,9 +22,9 @@ const port = 3000;
 app.use(express.json())
 app.use(cookieParser())
 
-app.get("/",(req,res)=>{
-    res.send("Hello World");
-})
+// app.get("/",(req,res)=>{
+//     res.send("Hello World");
+// })
 
 app.use('/api',userRouter)
 app.use('/api',messageRouter)
