@@ -2,15 +2,17 @@ import { useState } from "react";
 import { useAuthContext } from "../context/authContext";
 import toast from "react-hot-toast";
 
+const handleInputErrors=({email,password})=>{
+    if( !email || !password ){
+        toast.error("Please fill all the fields ")
+        return true
+    }
+    return false
+}
+
 const useLogin = () => {
 
-    const handleInputErrors=({email,password})=>{
-        if( !email || !password ){
-            toast.error("Please fill all the fields ")
-            return true
-        }
-        return false
-    }
+   
  
     const[loading,setLoading] =useState(false)
 
